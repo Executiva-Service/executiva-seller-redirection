@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="pt-BR">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Redirecionando...</title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+
+			body {
+				font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+				background: linear-gradient(135deg, #1a1a1a 0%, #000000 100%);
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				height: 100vh;
+				overflow: hidden;
+			}
+
+			.loading-container {
+				text-align: center;
+				color: white;
+			}
+
+			.spinner {
+				width: 60px;
+				height: 60px;
+				border: 5px solid rgba(255, 255, 255, 0.3);
+				border-top: 5px solid white;
+				border-radius: 50%;
+				margin: 0 auto 30px;
+				animation: spin 1s linear infinite;
+			}
+
+			@keyframes spin {
+				0% {
+					transform: rotate(0deg);
+				}
+				100% {
+					transform: rotate(360deg);
+				}
+			}
+
+			h1 {
+				font-size: 28px;
+				font-weight: 300;
+				margin-bottom: 15px;
+				animation: pulse 1.5s ease-in-out infinite;
+			}
+
+			@keyframes pulse {
+				0%,
+				100% {
+					opacity: 1;
+				}
+				50% {
+					opacity: 0.6;
+				}
+			}
+
+			.dots {
+				font-size: 24px;
+				letter-spacing: 3px;
+			}
+
+			.dot {
+				animation: blink 1.4s infinite;
+			}
+
+			.dot:nth-child(2) {
+				animation-delay: 0.2s;
+			}
+
+			.dot:nth-child(3) {
+				animation-delay: 0.4s;
+			}
+
+			@keyframes blink {
+				0%,
+				20%,
+				100% {
+					opacity: 0;
+				}
+				50% {
+					opacity: 1;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div class="loading-container">
+			<div class="spinner"></div>
+			<h1>Redirecionando</h1>
+			<div class="dots">
+				<span class="dot">.</span>
+				<span class="dot">.</span>
+				<span class="dot">.</span>
+			</div>
+		</div>
+
+		<script>
+			// Array com os links disponíveis
+			const links = [
+				"https://www.executivaservice.com/ap010",
+				"https://www.executivaservice.com/bruna",
+				"https://www.executivaservice.com/thayse",
+			];
+
+			// Função para selecionar um link aleatório
+			function getRandomLink() {
+				const randomIndex = Math.floor(Math.random() * links.length);
+				return links[randomIndex];
+			}
+
+			// Função para redirecionar
+			function redirectToRandomLink() {
+				const selectedLink = getRandomLink();
+
+				// Aguarda 2 segundos antes de redirecionar
+				setTimeout(() => {
+					window.location.replace(selectedLink);
+				}, 2000);
+			}
+
+			// Executa o redirecionamento assim que a página carrega
+			window.onload = redirectToRandomLink;
+		</script>
+	</body>
+</html>
